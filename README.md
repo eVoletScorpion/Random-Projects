@@ -5,5 +5,7 @@
 
 Literally just random things i code, you can steal them if you want i guess
 
-- all C++ projects took like 4 hours each
-- the single lua project took 7 minutes lol
+- All C++ projects took like 4 hours each
+- The single lua project took 7 minutes lol
+> [!TIP]
+> i don't count the shovelware folder towards anything, and you shouldn't either
