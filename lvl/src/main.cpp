@@ -33,24 +33,6 @@ void print(const string& thing) {
     cout << thing << " ";
 }
 
-baseItem* getItem(const string& itemName,
-    const vector<itemWeapon>& weapons, 
-    const vector<itemClass>& classes) {
-        
-    for (const auto& weapon : weapons) {
-        if (weapon.name == itemName) {
-            return new itemWeapon(weapon);
-        }
-    }
-        
-    for (const auto& classItem : classes) {
-        if (classItem.name == itemName) {
-            return new itemClass(classItem);
-        }
-    }
-        throw invalid_argument("item not found: " + itemName);
-}
-
 void levelUp(const string& itemName,
     vector<itemWeapon>& weapons, 
     vector<itemClass>& classes) {
