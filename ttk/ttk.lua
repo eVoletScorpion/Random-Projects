@@ -99,6 +99,7 @@ while true do
             print(string.format("health is now %d\n", health))
         else
             print("Missing health argument or argument isn't a number\n")
+            health = 200
         end
     elseif command == "list" then
         for i, weapon in ipairs(weapons) do
@@ -113,7 +114,7 @@ while true do
         else
             print("Missing argument or incorrect data type\n")
         end
-    elseif command == "q" or command == "quit" or command == "exit" then
+    elseif command == "exit" or command == "quit" or command == "q" then
         print("\ncya\n")
         break
     else
