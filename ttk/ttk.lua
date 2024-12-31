@@ -14,6 +14,15 @@ function calculate_dps(damage, rpm)
     return damage * rpm / 60
 end
 
+function calculate_mult(level)
+    local result = 0
+    for i = 1, level do
+        result = 1.00 + 0.05 * i - 0.05
+    end
+    
+    return result
+end
+
 function split(inputstr, seperator)
    if seperator == nil then
       seperator = "%s"
@@ -47,26 +56,18 @@ while true do
     local words = split(input)
     local command = string.lower(words[1])
 
-    if command == "ttk" then -- the variable names in this statement are so bad
+    if command == "ttk" then -- i couldve made it calculate without the ttk command
+        local weapon -- and only using [name] [level] but that looks wrong
         local inputWeapon = words[2]
+        local level = tonumber(words[3])
+        
         if inputWeapon then
-            inputWeapon = string.upper(words[2])
+            inputWeapon = string.upper(inputWeapon)
         else
             print("Missing weapon argument\n")
             goto continue
           --  continue WHY DOES LUA NOT HAVE CONTINUE DAWG
         end
-        
-        local level = words[3]
-        if level then
-            level = tonumber(words[3])
-        else
-            print("Missing level argument\n")
-            goto continue
-        end
-        
-        local weapon
-        local result = 0
     
         for _, weaponIndex in ipairs(weapons) do
             local weaponName = weaponIndex.name
@@ -81,10 +82,12 @@ while true do
             goto continue
         end
         
-        for i = 1, level do
-            result = 1.00 + 0.05 * i - 0.05
+        if not level or not type(level) == "number" then
+            print("Missing level argument\n")
+            goto continue
         end
-    
+        
+        local result = calculate_mult(level)
         local damage = weapon.damage * result
     
         local ttk = calculate_ttk(damage, health, weapon.rpm)
